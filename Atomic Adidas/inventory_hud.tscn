@@ -1,0 +1,148 @@
+[gd_scene load_steps=18 format=3 uid="uid://d222bnfdyr7fi"]
+
+[ext_resource type="Texture2D" uid="uid://nd02qncb7dyb" path="res://art/test/vignette.png" id="1_i5y7m"]
+[ext_resource type="Script" path="res://inventory_hud.gd" id="1_t1e1p"]
+[ext_resource type="Texture2D" uid="uid://466h1337ih6b" path="res://art/hud/geiger_counter/geiger1a.png" id="3_qoxmd"]
+[ext_resource type="Texture2D" uid="uid://c38i81jug7orr" path="res://art/hud/geiger_counter/geiger1b.png" id="4_do2l1"]
+[ext_resource type="Texture2D" uid="uid://r3jw33rwnyll" path="res://art/hud/geiger_counter/geiger2a.png" id="5_2kymq"]
+[ext_resource type="Texture2D" uid="uid://6yxabyaf66fs" path="res://art/hud/geiger_counter/geiger2b.png" id="6_fd5np"]
+[ext_resource type="Texture2D" uid="uid://gg3m4m8hmj02" path="res://art/hud/geiger_counter/geiger3a.png" id="7_2kdcc"]
+[ext_resource type="Texture2D" uid="uid://bolslx4sn6tnj" path="res://art/hud/geiger_counter/geiger3b.png" id="8_mnum1"]
+[ext_resource type="Texture2D" uid="uid://c7hfghomkt03y" path="res://art/hud/geiger_counter/geiger4a.png" id="9_11mnk"]
+[ext_resource type="Texture2D" uid="uid://bjyp8xasx27dp" path="res://art/hud/geiger_counter/geiger4b.png" id="10_11cbu"]
+[ext_resource type="Texture2D" uid="uid://dm588goxx3ll0" path="res://art/hud/geiger_counter/geiger5a.png" id="11_qnsn3"]
+[ext_resource type="Texture2D" uid="uid://bp7q5hybgusx4" path="res://art/hud/geiger_counter/geiger5b.png" id="12_5ivq5"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6j1ej"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_qoxmd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_do2l1")
+}],
+"loop": true,
+"name": &"level_1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_2kymq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_fd5np")
+}],
+"loop": true,
+"name": &"level_2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_2kdcc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_mnum1")
+}],
+"loop": true,
+"name": &"level_3",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_11mnk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_11cbu")
+}],
+"loop": true,
+"name": &"level_4",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_qnsn3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_5ivq5")
+}],
+"loop": true,
+"name": &"level_5",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_1gs3t"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1672, 1192)]
+}
+
+[sub_resource type="Animation" id="Animation_66bi7"]
+resource_name = "pick_down"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1672, 900), Vector2(1672, 1192)]
+}
+
+[sub_resource type="Animation" id="Animation_eopg8"]
+resource_name = "pick_up"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1672, 1192), Vector2(1672, 900)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wvprp"]
+_data = {
+"RESET": SubResource("Animation_1gs3t"),
+"pick_down": SubResource("Animation_66bi7"),
+"pick_up": SubResource("Animation_eopg8")
+}
+
+[node name="InventoryHUD" type="CanvasLayer"]
+layer = 2
+script = ExtResource("1_t1e1p")
+
+[node name="GeigerCounter" type="AnimatedSprite2D" parent="."]
+position = Vector2(1672, 1192)
+scale = Vector2(3.74752, 3.74752)
+sprite_frames = SubResource("SpriteFrames_6j1ej")
+animation = &"level_1"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="GeigerCounter"]
+libraries = {
+"": SubResource("AnimationLibrary_wvprp")
+}
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -0.00012207
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("1_i5y7m")
+expand_mode = 1

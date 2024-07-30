@@ -1,9 +1,8 @@
-[gd_scene load_steps=72 format=3 uid="uid://cr2mfft66geu1"]
+[gd_scene load_steps=71 format=3 uid="uid://cr2mfft66geu1"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_aovl3"]
 [ext_resource type="Texture2D" uid="uid://bn1pse4wb3h61" path="res://art/player/Tinek.png" id="2_ntcts"]
 [ext_resource type="PackedScene" uid="uid://d222bnfdyr7fi" path="res://inventory_hud.tscn" id="3_aydv7"]
-[ext_resource type="Script" path="res://geiger_area.gd" id="4_l12hr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8cw0i"]
 atlas = ExtResource("2_ntcts")
@@ -599,34 +598,7 @@ zoom = Vector2(3, 3)
 
 [node name="InventoryHUD" parent="." instance=ExtResource("3_aydv7")]
 
-[node name="GeigerAreaContainer" type="Node2D" parent="."]
-script = ExtResource("4_l12hr")
+[node name="GeigerArea" type="Area2D" parent="."]
 
-[node name="GeigerArea1" type="Area2D" parent="GeigerAreaContainer"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GeigerAreaContainer/GeigerArea1"]
-shape = SubResource("CircleShape2D_2r5ij")
-
-[node name="GeigerArea2" type="Area2D" parent="GeigerAreaContainer"]
-scale = Vector2(0.8, 0.8)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GeigerAreaContainer/GeigerArea2"]
-shape = SubResource("CircleShape2D_2r5ij")
-
-[node name="GeigerArea3" type="Area2D" parent="GeigerAreaContainer"]
-scale = Vector2(0.6, 0.6)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GeigerAreaContainer/GeigerArea3"]
-shape = SubResource("CircleShape2D_2r5ij")
-
-[node name="GeigerArea4" type="Area2D" parent="GeigerAreaContainer"]
-scale = Vector2(0.4, 0.4)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GeigerAreaContainer/GeigerArea4"]
-shape = SubResource("CircleShape2D_2r5ij")
-
-[node name="GeigerArea5" type="Area2D" parent="GeigerAreaContainer"]
-scale = Vector2(0.2, 0.2)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GeigerAreaContainer/GeigerArea5"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GeigerArea"]
 shape = SubResource("CircleShape2D_2r5ij")

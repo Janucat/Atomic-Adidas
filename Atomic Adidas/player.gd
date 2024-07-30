@@ -7,6 +7,7 @@ extends CharacterBody2D
 
 @export var speed = 200.0
 
+var distance
 var has_rifle = false
 var is_rifle_in_hand = false
 
@@ -97,3 +98,7 @@ func _physics_process(delta):
 		sprite.play_backwards("watch_geiger_counter")
 	#endregion
 	
+func _on_geiger_area_area_entered(area):
+	distance = sqrt(((position.x - area.position.x)**2 + (position.y - area.position.y)**2))
+	print(distance)
+

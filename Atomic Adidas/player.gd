@@ -7,6 +7,7 @@ extends CharacterBody2D
 
 @export var speed = 150.0
 
+var distance
 var has_rifle = false
 var is_rifle_in_hand = false
 
@@ -99,6 +100,7 @@ func _physics_process(delta):
 		sprite.play_backwards("watch_geiger_counter")
 	#endregion
 	
+
 	if Input.is_action_just_pressed("interact"):
 		pass #for i in interactables; i._on_interation
 		#oppure un signal
@@ -111,3 +113,8 @@ func _on_interaction_area_area_entered(area):
 func _on_interaction_area_area_exited(area):
 	if interactables.has(area):
 		interactables.erase(area)
+
+func _on_geiger_area_area_entered(area):
+	distance = sqrt(((position.x - area.position.x)**2 + (position.y - area.position.y)**2))
+	print(distance)
+

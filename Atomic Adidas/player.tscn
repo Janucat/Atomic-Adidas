@@ -606,6 +606,8 @@ zoom = Vector2(3, 3)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GeigerArea"]
 shape = SubResource("CircleShape2D_2r5ij")
 
+[connection signal="area_entered" from="GeigerArea" to="." method="_on_geiger_area_area_entered"]
+
 [node name="InteractionArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
@@ -613,3 +615,5 @@ shape = SubResource("CircleShape2D_q6hxh")
 
 [connection signal="area_entered" from="InteractionArea" to="." method="_on_interaction_area_area_entered"]
 [connection signal="area_exited" from="InteractionArea" to="." method="_on_interaction_area_area_exited"]
+
+

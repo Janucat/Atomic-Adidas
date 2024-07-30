@@ -5,7 +5,7 @@ extends CharacterBody2D
 @onready var sprite = $AnimatedSprite2D
 
 
-@export var speed = 200.0
+@export var speed = 150.0
 
 var has_rifle = false
 var is_rifle_in_hand = false
@@ -54,6 +54,8 @@ const ANIMATION_WALK_MAP = {
 
 var geiger_counter_level = 0
 
+var interactables = []
+
 
 func _physics_process(delta):
 	#region Movement
@@ -97,3 +99,15 @@ func _physics_process(delta):
 		sprite.play_backwards("watch_geiger_counter")
 	#endregion
 	
+	if Input.is_action_just_pressed("interact"):
+		pass #for i in interactables; i._on_interation
+		#oppure un signal
+
+
+func _on_interaction_area_area_entered(area):
+	interactables.append(area) 
+
+
+func _on_interaction_area_area_exited(area):
+	if interactables.has(area):
+		interactables.erase(area)

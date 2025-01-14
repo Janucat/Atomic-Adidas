@@ -117,4 +117,3 @@ func _on_interaction_area_area_exited(area):
 func _on_geiger_area_area_entered(area):
 	distance = sqrt(((position.x - area.position.x)**2 + (position.y - area.position.y)**2))
 	print(distance)
-

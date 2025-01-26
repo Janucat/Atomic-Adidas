@@ -3,6 +3,7 @@ extends CharacterBody2D
 
 @onready var inventory_hud = $InventoryHUD
 @onready var sprite = $AnimatedSprite2D
+@onready var radmap: TileMapLayer = $"../Radiation"
 
 
 @export var speed = 150.0
@@ -90,6 +91,14 @@ func _physics_process(delta):
 		sprite.play()
 	#endregion
 	
+	#region radiation detection
+	geiger_counter_level = radmap.get_cell_source_id(get_position().round())
+	print(geiger_counter_level)
+	print(get_position())
+	print(get_position().round())
+	print("#")
+	#endregion
+	
 	#region Geiger Counter Animation and HUD
 	if Input.is_action_just_pressed("open_geiger_counter"):
 		inventory_hud.open_geiger_counter()
@@ -113,7 +122,3 @@ func _on_interaction_area_area_entered(area):
 func _on_interaction_area_area_exited(area):
 	if interactables.has(area):
 		interactables.erase(area)
-
-func _on_geiger_area_area_entered(area):
-	distance = sqrt(((position.x - area.position.x)**2 + (position.y - area.position.y)**2))
-	print(distance)

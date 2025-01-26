@@ -1,4 +1,4 @@
-[gd_scene load_steps=72 format=3 uid="uid://cr2mfft66geu1"]
+[gd_scene load_steps=71 format=3 uid="uid://cr2mfft66geu1"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_aovl3"]
 [ext_resource type="Texture2D" uid="uid://bn1pse4wb3h61" path="res://art/player/Tinek.png" id="2_ntcts"]
@@ -575,9 +575,6 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cryea"]
 size = Vector2(24, 34)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_2r5ij"]
-radius = 300.0
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_q6hxh"]
 radius = 30.0
 
@@ -601,16 +598,10 @@ zoom = Vector2(3, 3)
 
 [node name="InventoryHUD" parent="." instance=ExtResource("3_aydv7")]
 
-[node name="GeigerArea" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GeigerArea"]
-shape = SubResource("CircleShape2D_2r5ij")
-
 [node name="InteractionArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
 shape = SubResource("CircleShape2D_q6hxh")
 
-[connection signal="area_entered" from="GeigerArea" to="." method="_on_geiger_area_area_entered"]
 [connection signal="area_entered" from="InteractionArea" to="." method="_on_interaction_area_area_entered"]
 [connection signal="area_exited" from="InteractionArea" to="." method="_on_interaction_area_area_exited"]

@@ -26,5 +26,3 @@ func close_geiger_counter():
 	geiger_counter_animation_player.play_backwards("pick_up")
 	geiger_counter_sprite.stop()
 #endregion
-
-#testoacazzo
